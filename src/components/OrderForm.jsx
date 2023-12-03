@@ -91,14 +91,14 @@ export const OrderForm = () => {
                 <br />
                 <input type='text' name={deliveryDay} />
                 <br />
-                {products.map((product, index) => (
+                {/* {products.map((product, index) => (
                     <div key={index}>
                         <label htmlFor={product}>{product.name}</label>
                         <br />
                         <input type='text' name={product.code} />
                         <br />
                     </div>
-                ))}
+                ))} */}
                 <label htmlFor='notes'>Additional Notes </label>
                 <br />
                 <input type='text' name={notes} />
