@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const customerName = 'entry.1623023882';
 const deliveryDay = 'entry.501096647';
 const notes = 'entry.1874860549';
@@ -78,16 +80,35 @@ let products = {
 };
 
 export const OrderForm = () => {
+    const getDefaultDate = (currentDate = new Date(), daysToAdd = 1) => {
+        const nextDate = new Date(currentDate);
+        nextDate.setDate(currentDate.getDate() + daysToAdd);
+        return nextDate;
+    };
+    let date = getDefaultDate().toDateString();
+
+    const [deliveryDate, setDeliveryDate] = useState(date);
+
     return (
         <div>
             <form action='https://docs.google.com/forms/d/e/1FAIpQLSccV-oSwwNOfBrBFPEFCZQPIBF6SlwzDp3m7_WeZnsNMBeAAg/formResponse'>
-                <label htmlFor={customerName}>Your Name</label>
+                <label htmlFor={customerName} placeholder='Your Name'>
+                    Ordered By
+                </label>
                 <br />
                 <input type='text' name={customerName} />
                 <br />
                 <label htmlFor={deliveryDay}>Delivery Day</label>
                 <br />
-                <input type='date' name={deliveryDay} />
+                <input
+                    type='date'
+                    onChange={(e) => {
+                        setDeliveryDate(e.target.value);
+                    }}
+                    name={deliveryDay}
+                    value={deliveryDate}
+                    required={true}
+                />
                 <br />
                 {Object.keys(products).map((product, index) => (
                     <div key={index}>
