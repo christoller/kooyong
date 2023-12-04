@@ -1,8 +1,6 @@
 const customerName = 'entry.1623023882';
 const deliveryDay = 'entry.501096647';
 const notes = 'entry.1874860549';
-const orderForm = document.getElementById('orderForm');
-const formContainer = document.getElementById('formContainer');
 
 let products = {
     bananaBread: {
@@ -80,21 +78,14 @@ let products = {
 };
 
 export const OrderForm = () => {
-    // const productMod = (productList) => {
-    //     console.log('hi');
-    //     for (let i = 0; i < productList.length; i++) {
-    //         return;
-    //     }
-    // };
-
     return (
         <div>
             <form action='https://docs.google.com/forms/d/e/1FAIpQLSccV-oSwwNOfBrBFPEFCZQPIBF6SlwzDp3m7_WeZnsNMBeAAg/formResponse'>
-                <label htmlFor='name'>Your Name</label>
+                <label htmlFor={customerName}>Your Name</label>
                 <br />
                 <input type='text' name={customerName} />
                 <br />
-                <label htmlFor='deliveryDay'>Delivery Day</label>
+                <label htmlFor={deliveryDay}>Delivery Day</label>
                 <br />
                 <input type='date' name={deliveryDay} />
                 <br />
@@ -112,7 +103,7 @@ export const OrderForm = () => {
                         <br />
                     </div>
                 ))}
-                <label htmlFor='notes'>Additional Notes </label>
+                <label htmlFor={notes}>Additional Notes </label>
                 <br />
                 <input type='text' name={notes} />
                 <br />
