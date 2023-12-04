@@ -80,6 +80,13 @@ let products = {
 };
 
 export const OrderForm = () => {
+    // const productMod = (productList) => {
+    //     console.log('hi');
+    //     for (let i = 0; i < productList.length; i++) {
+    //         return;
+    //     }
+    // };
+
     return (
         <div>
             <form action='https://docs.google.com/forms/d/e/1FAIpQLSccV-oSwwNOfBrBFPEFCZQPIBF6SlwzDp3m7_WeZnsNMBeAAg/response'>
@@ -89,16 +96,22 @@ export const OrderForm = () => {
                 <br />
                 <label htmlFor='deliveryDay'>Delivery Day</label>
                 <br />
-                <input type='text' name={deliveryDay} />
+                <input type='date' name={deliveryDay} />
                 <br />
-                {/* {products.map((product, index) => (
+                {Object.keys(products).map((product, index) => (
                     <div key={index}>
-                        <label htmlFor={product}>{product.name}</label>
+                        <label htmlFor={product}>
+                            {products[product].productName}
+                        </label>
                         <br />
-                        <input type='text' name={product.code} />
+                        <input
+                            type='text'
+                            pattern='\d*'
+                            name={products[product].productCode}
+                        />
                         <br />
                     </div>
-                ))} */}
+                ))}
                 <label htmlFor='notes'>Additional Notes </label>
                 <br />
                 <input type='text' name={notes} />
