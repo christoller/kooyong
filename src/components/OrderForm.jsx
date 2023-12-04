@@ -89,7 +89,7 @@ export const OrderForm = () => {
 
     return (
         <div>
-            <form action='https://docs.google.com/forms/d/e/1FAIpQLSccV-oSwwNOfBrBFPEFCZQPIBF6SlwzDp3m7_WeZnsNMBeAAg/response'>
+            <form action='https://docs.google.com/forms/d/e/1FAIpQLSccV-oSwwNOfBrBFPEFCZQPIBF6SlwzDp3m7_WeZnsNMBeAAg/formResponse'>
                 <label htmlFor='name'>Your Name</label>
                 <br />
                 <input type='text' name={customerName} />
@@ -100,7 +100,7 @@ export const OrderForm = () => {
                 <br />
                 {Object.keys(products).map((product, index) => (
                     <div key={index}>
-                        <label htmlFor={product}>
+                        <label htmlFor={products[product].productCode}>
                             {products[product].productName}
                         </label>
                         <br />
