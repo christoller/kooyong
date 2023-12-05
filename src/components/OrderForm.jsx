@@ -1,4 +1,16 @@
 import { useState } from 'react';
+import {
+    Button,
+    Box,
+    ButtonGroup,
+    TextField,
+    Card,
+    Typography,
+    CardMedia,
+    CardContent,
+    CardActions,
+} from '@mui/material';
+import { InputNumber } from 'rsuite';
 
 const customerName = 'entry.1623023882';
 const deliveryDay = 'entry.501096647';
@@ -86,49 +98,125 @@ export const OrderForm = () => {
         return nextDate;
     };
     let date = getDefaultDate().toDateString();
-
     const [deliveryDate, setDeliveryDate] = useState(date);
+
+    const handleUpClick = (e) => {
+        let target = document.getElementById(e);
+        parseInt(target.value++);
+    };
+    const handleDownClick = (e) => {
+        let target = document.getElementById(e);
+        if (target.value > 0) {
+            parseInt(target.value--);
+        } else {
+            target.value = 0;
+        }
+    };
 
     return (
         <div>
             <form action='https://docs.google.com/forms/d/e/1FAIpQLSccV-oSwwNOfBrBFPEFCZQPIBF6SlwzDp3m7_WeZnsNMBeAAg/formResponse'>
-                <label htmlFor={customerName} placeholder='Your Name'>
-                    Ordered By
-                </label>
-                <br />
-                <input type='text' name={customerName} />
-                <br />
-                <label htmlFor={deliveryDay}>Delivery Day</label>
-                <br />
-                <input
-                    type='date'
-                    onChange={(e) => {
-                        setDeliveryDate(e.target.value);
-                    }}
-                    name={deliveryDay}
-                    value={deliveryDate}
-                    required={true}
-                />
-                <br />
-                {Object.keys(products).map((product, index) => (
-                    <div key={index}>
-                        <label htmlFor={products[product].productCode}>
-                            {products[product].productName}
-                        </label>
-                        <br />
-                        <input
-                            type='text'
-                            pattern='\d*'
-                            name={products[product].productCode}
-                        />
-                        <br />
-                    </div>
-                ))}
-                <label htmlFor={notes}>Additional Notes </label>
-                <br />
-                <input type='text' name={notes} />
-                <br />
-                <button type='submit'>Submit</button>
+                <Box
+                    display='flex'
+                    flexDirection='column'
+                    justifyContent='center'
+                    alignItems='center'>
+                    <label htmlFor={customerName} placeholder='Your Name'>
+                        Ordered By
+                    </label>
+                    <br />
+                    <TextField
+                        id='outlined-basic'
+                        variant='outlined'
+                        type='text'
+                        name={customerName}
+                    />
+                    <br />
+                    <label htmlFor={deliveryDay}>Delivery Day</label>
+                    <br />
+                    <TextField
+                        id='outlined-basic'
+                        variant='outlined'
+                        type='date'
+                        onChange={(e) => {
+                            setDeliveryDate(e.target.value);
+                        }}
+                        name={deliveryDay}
+                        value={deliveryDate}
+                        required={true}
+                    />
+                    <br />
+                    {Object.keys(products).map((product, index) => (
+                        <Card sx={{ minWidth: 275 }}>
+                            <CardContent>
+                                <Typography
+                                    htmlFor={products[product].productCode}>
+                                    {products[product].productName}
+                                </Typography>
+
+                                <CardActions sx={{ justifyContent: 'center' }}>
+                                    <ButtonGroup
+                                        variant='outlined'
+                                        aria-label='outlined button group'
+                                        justifyContent='center'>
+                                        <Button
+                                            onClick={() => {
+                                                handleDownClick(
+                                                    products[product]
+                                                        .productCode
+                                                );
+                                            }}>
+                                            -
+                                        </Button>
+                                        <TextField
+                                            id={products[product].productCode}
+                                            variant='outlined'
+                                            type='text'
+                                            pattern='\d*'
+                                            name={products[product].productCode}
+                                            placeholder='0'
+                                        />
+                                        <Button
+                                            onClick={() => {
+                                                handleUpClick(
+                                                    products[product]
+                                                        .productCode
+                                                );
+                                            }}>
+                                            +
+                                        </Button>
+                                    </ButtonGroup>
+                                </CardActions>
+                            </CardContent>
+                            {/* <div key={index}>
+                            <label htmlFor={products[product].productCode}>
+                                {products[product].productName}
+                            </label>
+                            <br />
+                            <TextField
+                                id='outlined-basic'
+                                variant='outlined'
+                                type='text'
+                                pattern='\d*'
+                                name={products[product].productCode}
+                            />
+                            <br />
+                        </div> */}
+                        </Card>
+                    ))}
+                    <label htmlFor={notes}>Additional Notes </label>
+                    <br />
+                    <TextField
+                        id='outlined-basic'
+                        variant='outlined'
+                        type='text'
+                        name={notes}
+                    />
+                    <br />
+                    <Button type='submit' variant='contained'>
+                        Submit
+                    </Button>
+                </Box>
             </form>
         </div>
     );
