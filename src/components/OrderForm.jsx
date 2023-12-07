@@ -27,8 +27,6 @@ const images = importAll(
     require.context('../images', false, /\.(png|jpe?g|svg)$/)
 );
 
-console.log(images);
-
 let products = {
     bananaBread: {
         productName: 'Banana Bread',
@@ -152,6 +150,15 @@ export const OrderForm = () => {
                     flexDirection='column'
                     justifyContent='center'
                     alignItems='center'>
+                    <Typography
+                        variant='h4'
+                        sx={{
+                            width: '80%',
+                            fontWeight: ' 800',
+                            color: '#76352d',
+                        }}>
+                        Wholesale Order Form
+                    </Typography>
                     <Card
                         sx={{
                             minWidth: 400,
@@ -160,7 +167,8 @@ export const OrderForm = () => {
                         <CardContent>
                             <Typography
                                 htmlFor={customerName}
-                                placeholder='Your Name'>
+                                placeholder='Your Name'
+                                sx={{ fontWeight: 800, mt: '7px', mb: '5px' }}>
                                 Ordered By
                             </Typography>
                             <TextField
@@ -168,12 +176,19 @@ export const OrderForm = () => {
                                 variant='outlined'
                                 type='text'
                                 name={customerName}
+                                sx={{ minWidth: '60%' }}
                             />
                         </CardContent>
                     </Card>
                     <Card sx={{ minWidth: 400, mt: 1.5 }}>
                         <CardContent>
-                            <Typography htmlFor={deliveryDay}>
+                            <Typography
+                                htmlFor={deliveryDay}
+                                sx={{
+                                    fontWeight: 800,
+                                    mt: '7px',
+                                    mb: '5px',
+                                }}>
                                 Delivery Day
                             </Typography>
                             <TextField
@@ -186,6 +201,7 @@ export const OrderForm = () => {
                                 name={deliveryDay}
                                 value={deliveryDate}
                                 required={true}
+                                sx={{ minWidth: '60%' }}
                             />
                         </CardContent>
                     </Card>
@@ -209,7 +225,12 @@ export const OrderForm = () => {
                                     }}
                                 />
                                 <Typography
-                                    htmlFor={products[product].productCode}>
+                                    htmlFor={products[product].productCode}
+                                    sx={{
+                                        fontWeight: 800,
+                                        mt: '7px',
+                                        mb: '5px',
+                                    }}>
                                     {products[product].productName}
                                 </Typography>
 
@@ -272,7 +293,9 @@ export const OrderForm = () => {
                     ))}
                     <Card sx={{ minWidth: 400, mt: 1.5 }}>
                         <CardContent>
-                            <Typography htmlFor={notes}>
+                            <Typography
+                                htmlFor={notes}
+                                sx={{ fontWeight: 800, mt: '7px', mb: '5px' }}>
                                 Additional Notes
                             </Typography>
                             <TextField
@@ -282,10 +305,16 @@ export const OrderForm = () => {
                                 name={notes}
                                 multiline
                                 minRows={3}
+                                sx={{ width: '90%' }}
                             />
                         </CardContent>
                     </Card>
-                    <Button type='submit' variant='contained'>
+                    <Button
+                        type='submit'
+                        variant='contained'
+                        sx={{
+                            m: 1.5,
+                        }}>
                         Submit
                     </Button>
                 </Box>
